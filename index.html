@@ -1,0 +1,114 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style type="text/css">
+      #img {
+        background: url('Step 02.png');
+        width: 253px;
+        height: 458px;
+        display: none;
+      }
+
+      #img span {
+        padding-top: 252px;
+        display: block;
+        padding-left: 18px;
+        font-family: 'Segoe UI';
+        font-size: 12px;
+      }
+
+      img, canvas {
+        display: block !important;
+        border: black solid;
+        margin: 15px;
+      }
+
+      input, button {
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      * {
+        font-family: 'Segoe UI';
+        margin: 0;
+        padding: 0;
+      }
+
+      #center {
+        display: flex;
+        justify-content: center;
+        place-items: center;
+        text-align: center;
+        height: 100vh;
+        background: url('https://img.freepik.com/premium-vector/back-school-seamless-pattern-with-education-supplies-stationery-light-background_198278-1235.jpg?w=2000');
+      }
+      center {
+        padding: 15px;
+        background: #ffeedf;
+        border-radius: 15px;
+        box-shadow: 1px 1px 12px black;
+      }
+      .stepMarker, h1, b {
+        padding: 15px
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  </head>
+  <body>
+    <div id="center">
+
+      <center>
+        <h2>
+          Mobiz-Advanced-Information-And-Communications-<br>
+          Technology-Summative-Assesment-4-Exam-Automation
+        </h2><br>
+
+        <input value="JS8D" type="text" ng-model="yourClass" placeholder="Enter your class" /><br><br>
+        <input value="YourName" type="text" ng-model="yourName" placeholder="Enter your name" /><br><br>
+
+        <button onclick="generateInstructions()">Create Instructions!</button><br><br>
+        <a href="https://mobiz-advanced-technologies.github.io/Mobiz-Advanced-Information-And-Communications-Technology-Summative-Assesment-4-Exam-Automation/SA4_YOURNAME_YOURCLASS.iso"><button>Download DVD Image for practical test</button></a>
+      </center>
+
+    </div>
+    <div id="img">
+      <span>{{yourClass}}_{{yourName}}</span>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var generatedImages = 0
+
+    function imagesToHTML(url) {
+      let img = document.createElement('img')
+      let p = document.createElement('p')
+      generatedImages += 1
+      p.innerText = `Step ${generatedImages}:`
+      p.className = "stepMarker"
+      document.body.appendChild(p)
+      img.src = url
+      document.body.appendChild(img)
+    }
+
+    function generateInstructions() {
+      document.getElementById('img').style.display = 'block'
+      html2canvas(document.querySelector("#img")).then(canvas => {
+        document.getElementById('img').style.display = 'none'
+        document.body.innerHTML = `<h1>Right Click, Copy and Paste these images to your Slide!</h1><b>Dont Forget To Thank Us! © Mobiz-Advanced-Technologies 2023</b>`
+
+        imagesToHTML('Step 01.png')
+
+        let p = document.createElement('p')
+        generatedImages += 1
+        p.className = "stepMarker"
+        p.innerText = `Step ${generatedImages}:`
+        document.body.appendChild(p)
+        document.body.appendChild(canvas)
+
+        imagesToHTML('Step 03.png')
+        imagesToHTML('Step 04.png')
+      });
+    }
+  </script>
+</html>
